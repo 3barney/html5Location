@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Location Access</title>
+		<style type="text/css">
+			body {
+				padding-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<p id="location"> Click To Get your Position </p>
+
+		
+		<div id="positionHolder">
+			Your Position Coordinates
+			
+			<p id="latitudeHolder"></p>
+			<p id="longitudeHolder"></p>
+
+			<button onclick="getLocation()">Location</button>
+		</div>
+		</div>
+
+		<script type="text/javascript">
+			var my_location = document.getElementById("location");
+			
+			function getLocation () {
+				console.log("Fetching location");
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition, showError);
+				} else {
+					my_location.innerHTML = "Geolocation Not supported";
+				}
+			}
+
+			function showPosition (position) {
+				console.log(position);
+				var latitude = position.coords.latitude
+				var longitude = position.coords.longitude;
+				alert(latitude);
+				document.getElementById("latitudeHolder").innerHTML = latitude;
+				document.getElementById("longitudeHolder").innerHTML = longitude;
+			}
+
+			function showError (error) {
+				console.log(error);
+				switch (error.code) {
+					case error.PERMISSION_DENIED:
+						my_location.innerHTML = "User denied Geolocation request";
+						break;
+					case error.POSITION_UNAVAILABLE:
+						my_location.innerHTML = "Location information is unavailable";
+			            break;
+			        case error.TIMEOUT:
+			            my_location.innerHTML = "The request to get user location timed out.";
+			            break;
+			        case error.UNKNOWN_ERROR:
+			            my_location.innerHTML = "An unknown error occurred.";
+			            break;
+				}
+			}
+		</script>
+
+	</body>
+</html>
