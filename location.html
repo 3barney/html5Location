@@ -7,14 +7,20 @@
 
 		<p id="location"> Click To Get your Position </p>
 
-		<div id="locationHolder">
-			No Latitude
+		
+		<div id="positionHolder">
+			Your Position Coordinates
+			
+			<p id="latitudeHolder"></p>
+			<p id="longitudeHolder"></p>
+
 			<button onclick="getLocation()">Location</button>
+		</div>
 		</div>
 
 		<script type="text/javascript">
 			var my_location = document.getElementById("location");
-
+			
 			function getLocation () {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -26,9 +32,9 @@
 			function showPosition (position) {
 				console.log(position);
 				var latitude = position.coords.latitude
-				var Longitude = position.coords.longitude;
-				document.getElementById("latitudeHolder").innerHTML = latitudeHolder;
-				document.getElementById("longitudeHolder").innerHTML = longitudeHolder;
+				var longitude = position.coords.longitude;
+				document.getElementById("latitudeHolder").innerHTML = latitude;
+				document.getElementById("longitudeHolder").innerHTML = longitude;
 			}
 
 			function showError (error) {
