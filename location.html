@@ -27,6 +27,7 @@
 			var my_location = document.getElementById("location");
 			
 			function getLocation () {
+				console.log("Fetching location");
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				} else {
